@@ -38,8 +38,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _input(event):
-	
+func _input(event):	
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			mouse_motion = -event.relative * 0.001
@@ -49,8 +48,14 @@ func _input(event):
 
 
 func _handle_camera_rotation():
-	rotate_y(mouse_motion.x)
-	camera_pivot.rotate_x(mouse_motion.y)
+	var axis_vector = Input.get_vector("cam_left", "cam_right", "cam_up", "cam_down")
+	if axis_vector.length() >= 0.2:
+		rotate_y(deg_to_rad(-axis_vector.x * 1.5))
+		camera_pivot.rotate_x(deg_to_rad(-axis_vector.y * 1.5))
+	else:
+		rotate_y(mouse_motion.x)
+		camera_pivot.rotate_x(mouse_motion.y)
+		
 	camera_pivot.rotation_degrees.x = clampf(
 		camera_pivot.rotation_degrees.x, -90.0, 90.0
 	)
