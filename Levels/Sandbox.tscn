@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcd4ynv2tdjj"]
+[gd_scene load_steps=7 format=3 uid="uid://bcd4ynv2tdjj"]
 
 [ext_resource type="PackedScene" uid="uid://bsu3gmgu7rb31" path="res://Player/Player.tscn" id="1_pqrdl"]
 
@@ -15,6 +15,12 @@ sky = SubResource("Sky_8ak0t")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ecytd"]
+albedo_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm70w"]
+albedo_color = Color(0.921569, 0.392157, 0, 1)
+
 [node name="Sandbox" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -28,6 +34,33 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(64, 1, 64)
+material = SubResource("StandardMaterial3D_ecytd")
 
 [node name="Player" parent="." instance=ExtResource("1_pqrdl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="Platform" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4.015)
+use_collision = true
+material = SubResource("StandardMaterial3D_cm70w")
+
+[node name="Platform2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5.01542)
+use_collision = true
+size = Vector3(1, 2, 1)
+material = SubResource("StandardMaterial3D_cm70w")
+
+[node name="Platform3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, -4.51542)
+use_collision = true
+size = Vector3(1, 3, 2)
+material = SubResource("StandardMaterial3D_cm70w")
+
+[node name="UnreachablePlatform" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.75, -4.015)
+use_collision = true
+size = Vector3(1, 1.5, 1)
+material = SubResource("StandardMaterial3D_cm70w")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bsu3gmgu7rb31"]
 
-[ext_resource type="Script" path="res://Player/player.gd" id="1_kr7bg"]
-[ext_resource type="Script" path="res://Player/smooth_camera.gd" id="2_oslpa"]
+[ext_resource type="Script" uid="uid://ct83tvyif8c5j" path="res://Player/player.gd" id="1_kr7bg"]
+[ext_resource type="Script" uid="uid://dba8wg8u2iunn" path="res://Player/smooth_camera.gd" id="2_oslpa"]
 [ext_resource type="Texture2D" uid="uid://b1c2lu23ubtb" path="res://assets/crosshairs/crosshair010.png" id="4_ae8mj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oe56q"]
