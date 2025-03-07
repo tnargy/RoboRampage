@@ -3,7 +3,9 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const AGGRO_RANGE := 12.0
+@export_range(0,5,0.5) var attack_range := 1.5
 @onready var navigation_agent_3d = %NavigationAgent3D
+@onready var animation_player = %AnimationPlayer
 var player : CharacterBody3D
 var provoked := false
 
@@ -27,7 +29,11 @@ func _physics_process(delta):
 	if distance <= AGGRO_RANGE:
 		provoked = true
 		
+	if provoked and distance <= attack_range:
+		animation_player.play("Attack")
+		
 	if direction:
+		look_at_target(direction)
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
@@ -36,3 +42,14 @@ func _physics_process(delta):
 	
 	if provoked:
 		move_and_slide()
+
+
+func look_at_target(direction: Vector3):
+	var adj_direction = direction
+	adj_direction.y = 0.0
+	
+	look_at(global_position + adj_direction, Vector3.UP, true)
+
+
+func attack():
+	print("Enemy Attack!")
