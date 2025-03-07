@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsu3gmgu7rb31"]
+[gd_scene load_steps=7 format=3 uid="uid://bsu3gmgu7rb31"]
 
 [ext_resource type="Script" uid="uid://ct83tvyif8c5j" path="res://Player/player.gd" id="1_kr7bg"]
 [ext_resource type="Script" uid="uid://dba8wg8u2iunn" path="res://Player/smooth_camera.gd" id="2_oslpa"]
+[ext_resource type="PackedScene" uid="uid://d11p1sllssfm2" path="res://Weapons/blaster_p.tscn" id="3_ddoul"]
 [ext_resource type="Texture2D" uid="uid://b1c2lu23ubtb" path="res://assets/crosshairs/crosshair010.png" id="4_ae8mj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oe56q"]
@@ -25,6 +26,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441576, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 top_level = true
 script = ExtResource("2_oslpa")
+
+[node name="blasterP" parent="CameraPivot/SmoothCamera" instance=ExtResource("3_ddoul")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.6, -0.5, -1)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15

@@ -1,0 +1,28 @@
+extends Node3D
+
+@export var fire_rate := 14.0
+@export var recoil_x := 4
+@export var recoil_z := 0.05
+@export var weapon_mesh : MeshInstance3D
+@onready var cooldown = %Cooldown
+@onready var weapon_position : Vector3 = weapon_mesh.position
+var camera_pivot
+
+
+func _ready():
+	var player = get_tree().get_first_node_in_group("player")
+	camera_pivot = player.find_child("CameraPivot")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Input.is_action_pressed("fire"):
+		shoot()
+		
+	weapon_mesh.position = weapon_mesh.position.lerp(weapon_position, delta * 5)
+
+
+func shoot():
+	if cooldown.is_stopped():
+		cooldown.start(1.0 / fire_rate)
+		weapon_mesh.position.z -= recoil_z
+		camera_pivot.rotation_degrees.x += recoil_x
