@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://d11p1sllssfm2"]
-
-[ext_resource type="PackedScene" uid="uid://c6yknno6ogb1q" path="res://assets/blasters/blasterP.glb" id="1_ch6qr"]
-[ext_resource type="PackedScene" uid="uid://nfyllb24rj6r" path="res://Weapons/hitscan_weapon.tscn" id="2_kxxv4"]
-
-[node name="blasterP" instance=ExtResource("1_ch6qr")]
-
-[node name="HitscanWeapon" parent="." index="1" node_paths=PackedStringArray("weapon_mesh") instance=ExtResource("2_kxxv4")]
-weapon_mesh = NodePath("../blasterP")
