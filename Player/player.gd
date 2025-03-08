@@ -1,11 +1,18 @@
+class_name Player
 extends CharacterBody3D
 
 
 const SPEED = 5.0
 const FALL_MULTIPLIER = 2.5
 @export var jump_height: float = 1.0
+@export var max_health := 100
 @onready var camera_pivot = %CameraPivot
 var mouse_motion := Vector2.ZERO
+var hitpoints : int = max_health :
+	set(value):
+		hitpoints = value
+		if hitpoints <= 0:
+			get_tree().quit()
 
 
 func _ready():

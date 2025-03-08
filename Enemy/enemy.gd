@@ -1,13 +1,22 @@
+class_name Enemy
 extends CharacterBody3D
 
 
 const SPEED = 5.0
-const AGGRO_RANGE := 12.0
 @export_range(0,5,0.5) var attack_range := 1.5
+@export var aggro_range := 12.0
+@export var max_health := 100
+@export var damage := 15
 @onready var navigation_agent_3d = %NavigationAgent3D
 @onready var animation_player = %AnimationPlayer
-var player : CharacterBody3D
+var player : Player
 var provoked := false
+var hitpoints : int = max_health :
+	set(value):
+		hitpoints = value
+		if hitpoints <= 0:
+			queue_free()
+		provoked = true
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
@@ -26,7 +35,7 @@ func _physics_process(delta):
 	var direction = global_position.direction_to(next_pos)
 	var distance = global_position.distance_to(player.global_position)
 	
-	if distance <= AGGRO_RANGE:
+	if distance <= aggro_range:
 		provoked = true
 		
 	if provoked and distance <= attack_range:
@@ -52,4 +61,4 @@ func look_at_target(direction: Vector3):
 
 
 func attack():
-	print("Enemy Attack!")
+	player.hitpoints -= damage
