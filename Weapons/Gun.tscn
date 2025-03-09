@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=4 uid="uid://nfyllb24rj6r"]
+[gd_scene load_steps=15 format=4 uid="uid://nfyllb24rj6r"]
 
 [ext_resource type="Script" uid="uid://lc8v2rbgdc71" path="res://Weapons/gun.gd" id="1_e45m5"]
+[ext_resource type="PackedScene" uid="uid://c6uuqc4j1sbpv" path="res://Weapons/Sparks.tscn" id="2_2qy3u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5ki6"]
 resource_name = "metal"
@@ -174,6 +175,7 @@ size = Vector3(0.05, 0.05, 0.05)
 
 [node name="Gun" type="Node3D"]
 script = ExtResource("1_e45m5")
+spark_Scene = ExtResource("2_2qy3u")
 
 [node name="Cooldown" type="Timer" parent="."]
 one_shot = true
@@ -182,9 +184,6 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0427053, 0)
 mesh = SubResource("ArrayMesh_ngl63")
 skeleton = NodePath("")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, 100)
 
 [node name="MuzzleFlash" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.457)

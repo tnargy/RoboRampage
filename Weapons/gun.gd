@@ -5,9 +5,10 @@ extends Node3D
 @export var weapon_damage := 15
 @export var recoil_x := 4
 @export var recoil_z := 0.05
+@export var spark_Scene : PackedScene
+@export var ray_cast_3d : RayCast3D
 @onready var weapon_mesh = $"WeaponMesh"
 @onready var cooldown = $Cooldown
-@onready var ray_cast_3d = $RayCast3D
 @onready var muzzle_flash : GPUParticles3D = $MuzzleFlash
 @onready var weapon_position : Vector3 = weapon_mesh.position
 var camera_pivot
@@ -34,3 +35,6 @@ func shoot():
 	var collider = ray_cast_3d.get_collider()
 	if collider is Enemy:
 		collider.hitpoints -= weapon_damage
+	var spark = spark_Scene.instantiate()
+	add_child(spark)
+	spark.global_position = ray_cast_3d.get_collision_point()

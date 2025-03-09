@@ -27,8 +27,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 top_level = true
 script = ExtResource("2_oslpa")
 
-[node name="Gun" parent="CameraPivot/SmoothCamera" instance=ExtResource("3_ddoul")]
+[node name="Gun" parent="CameraPivot/SmoothCamera" node_paths=PackedStringArray("ray_cast_3d") instance=ExtResource("3_ddoul")]
 transform = Transform3D(-0.999391, -2.09548e-09, -0.0348994, -0.00104934, 0.999548, 0.0300492, 0.0348836, 0.0300675, -0.998939, 0.6, -0.5, -1)
+ray_cast_3d = NodePath("../RayCast3D")
+
+[node name="RayCast3D" type="RayCast3D" parent="CameraPivot/SmoothCamera"]
+target_position = Vector3(0, -1, -100)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
