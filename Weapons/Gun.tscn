@@ -182,11 +182,12 @@ one_shot = true
 
 [node name="WeaponMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0427053, 0)
+layers = 2
 mesh = SubResource("ArrayMesh_ngl63")
-skeleton = NodePath("")
 
 [node name="MuzzleFlash" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.457)
+layers = 2
 material_override = SubResource("StandardMaterial3D_e45m5")
 cast_shadow = 0
 emitting = false
