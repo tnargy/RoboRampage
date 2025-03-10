@@ -8,6 +8,7 @@ const FALL_MULTIPLIER = 2.5
 @export var max_health := 100
 @onready var camera_pivot = %CameraPivot
 @onready var damage_animation_player = %DamageAnimationPlayer
+@onready var game_over_menu = %GameOverMenu
 var mouse_motion := Vector2.ZERO
 var hitpoints : int = max_health :
 	set(value):
@@ -16,7 +17,7 @@ var hitpoints : int = max_health :
 			damage_animation_player.play("TakeDamage")
 		hitpoints = value
 		if hitpoints <= 0:
-			get_tree().quit()
+			game_over_menu.game_over()
 
 
 func _ready():
