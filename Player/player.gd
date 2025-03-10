@@ -7,9 +7,13 @@ const FALL_MULTIPLIER = 2.5
 @export var jump_height: float = 1.0
 @export var max_health := 100
 @onready var camera_pivot = %CameraPivot
+@onready var damage_animation_player = %DamageAnimationPlayer
 var mouse_motion := Vector2.ZERO
 var hitpoints : int = max_health :
 	set(value):
+		if value < hitpoints:
+			damage_animation_player.stop(false)
+			damage_animation_player.play("TakeDamage")
 		hitpoints = value
 		if hitpoints <= 0:
 			get_tree().quit()
