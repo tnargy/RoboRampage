@@ -7,6 +7,8 @@ extends Node3D
 @export var recoil_z := 0.05
 @export var spark_Scene : PackedScene
 @export var weapon_mesh : MeshInstance3D
+@export var ammo_handler : AmmoHandler
+@export var ammo_type : AmmoHandler.AMMO_TYPE
 @onready var cooldown = %Cooldown
 @onready var muzzle_flash : GPUParticles3D = %MuzzleFlash
 @onready var weapon_position : Vector3 = weapon_mesh.position
@@ -28,6 +30,9 @@ func _process(delta):
 
 
 func shoot():
+	if !ammo_handler.has_ammo(ammo_type):
+		return
+	ammo_handler.use_ammo(ammo_type)
 	muzzle_flash.restart()
 	cooldown.start(1.0 / fire_rate)
 	weapon_mesh.position.z -= recoil_z
