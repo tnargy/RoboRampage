@@ -9,6 +9,7 @@ const FALL_MULTIPLIER = 2.5
 @onready var camera_pivot = %CameraPivot
 @onready var damage_animation_player = %DamageAnimationPlayer
 @onready var game_over_menu = %GameOverMenu
+@onready var ammo_handler: AmmoHandler = %AmmoHandler
 var mouse_motion := Vector2.ZERO
 var hitpoints : int = max_health :
 	set(value):

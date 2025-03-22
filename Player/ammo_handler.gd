@@ -30,3 +30,8 @@ func use_ammo(type: AMMO_TYPE):
 	if has_ammo(type):
 		ammo_storage[type] -= 1
 		ammo_used.emit(type)
+
+
+func add_ammo(type: AMMO_TYPE, amount: int):
+	ammo_storage[type] += amount
+	ammo_used.emit(type)

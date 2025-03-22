@@ -24,7 +24,7 @@ func _unhandled_input(event):
 func equip(next_weapon : Gun):
 	if not ammo_handler.is_node_ready():
 		await ammo_handler.ready
-	ammo_handler.ammo_used.emit(next_weapon.AMMO_TYPE)
+	ammo_handler.ammo_used.emit(next_weapon.ammo_type)
 	var index = -1
 	for child : Gun in get_children():
 		index += 1

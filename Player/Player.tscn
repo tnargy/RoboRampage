@@ -133,6 +133,7 @@ ammo_handler = NodePath("../../AmmoHandler")
 ammo_handler = NodePath("../../AmmoHandler")
 
 [node name="AmmoHandler" type="Node" parent="SubViewportContainer/SubViewport/WeaponCamera" node_paths=PackedStringArray("ammo")]
+unique_name_in_owner = true
 script = ExtResource("6_j23h2")
 ammo = NodePath("Ammo")
 
