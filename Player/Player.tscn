@@ -1,15 +1,44 @@
-[gd_scene load_steps=12 format=3 uid="uid://bsu3gmgu7rb31"]
+[gd_scene load_steps=14 format=3 uid="uid://bsu3gmgu7rb31"]
 
 [ext_resource type="Script" uid="uid://ct83tvyif8c5j" path="res://Player/player.gd" id="1_kr7bg"]
 [ext_resource type="Script" uid="uid://dba8wg8u2iunn" path="res://Player/smooth_camera.gd" id="2_oslpa"]
-[ext_resource type="PackedScene" uid="uid://nfyllb24rj6r" path="res://Weapons/Gun.tscn" id="3_ddoul"]
+[ext_resource type="PackedScene" uid="uid://ed67gl6ytyeo" path="res://Weapons/Pistol.tscn" id="3_6ysni"]
+[ext_resource type="Script" uid="uid://c2drvv3oxl6w3" path="res://Player/weapon_handler.gd" id="3_s1rgi"]
 [ext_resource type="Texture2D" uid="uid://b1c2lu23ubtb" path="res://assets/crosshairs/crosshair010.png" id="4_ae8mj"]
+[ext_resource type="PackedScene" uid="uid://nfyllb24rj6r" path="res://Weapons/SMG.tscn" id="4_vlldt"]
 [ext_resource type="Texture2D" uid="uid://dg4hd1cm3u3j7" path="res://assets/damage.png" id="5_8g4oa"]
 [ext_resource type="PackedScene" uid="uid://l5l147w6ftno" path="res://Player/game_over_menu.tscn" id="6_6ysni"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oe56q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_erl2w"]
+
+[sub_resource type="Animation" id="Animation_vlldt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_6ysni"]
 resource_name = "TakeDamage"
@@ -39,33 +68,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_vlldt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s1rgi"]
 _data = {
 &"RESET": SubResource("Animation_vlldt"),
@@ -91,13 +93,6 @@ top_level = true
 cull_mask = 1048573
 script = ExtResource("2_oslpa")
 
-[node name="Gun" parent="CameraPivot/SmoothCamera" node_paths=PackedStringArray("ray_cast_3d") instance=ExtResource("3_ddoul")]
-transform = Transform3D(-0.999391, -2.09548e-09, -0.0348994, -0.00104934, 0.999548, 0.0300492, 0.0348836, 0.0300675, -0.998939, 0.6, -0.5, -1.8)
-ray_cast_3d = NodePath("../RayCast3D")
-
-[node name="RayCast3D" type="RayCast3D" parent="CameraPivot/SmoothCamera"]
-target_position = Vector3(0, -1, -100)
-
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="CameraPivot/SmoothCamera"]
 remote_path = NodePath("../../../SubViewportContainer/SubViewport/WeaponCamera")
 
@@ -120,12 +115,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 cull_mask = 2
 fov = 40.0
 
+[node name="WeaponHandler" type="Node3D" parent="SubViewportContainer/SubViewport/WeaponCamera" node_paths=PackedStringArray("weapons")]
+script = ExtResource("3_s1rgi")
+weapons = [NodePath("SMG"), NodePath("Pistol")]
+
+[node name="SMG" parent="SubViewportContainer/SubViewport/WeaponCamera/WeaponHandler" instance=ExtResource("4_vlldt")]
+
+[node name="Pistol" parent="SubViewportContainer/SubViewport/WeaponCamera/WeaponHandler" instance=ExtResource("3_6ysni")]
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Crosshair" type="TextureRect" parent="CenterContainer"]
 unique_name_in_owner = true
@@ -141,6 +145,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 324)
+mouse_filter = 2
 texture = ExtResource("5_8g4oa")
 
 [node name="DamageAnimationPlayer" type="AnimationPlayer" parent="DamageTexture"]

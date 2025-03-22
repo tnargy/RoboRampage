@@ -6,11 +6,11 @@ extends Node3D
 @export var recoil_x := 4
 @export var recoil_z := 0.05
 @export var spark_Scene : PackedScene
-@export var ray_cast_3d : RayCast3D
-@onready var weapon_mesh = $"WeaponMesh"
-@onready var cooldown = $Cooldown
-@onready var muzzle_flash : GPUParticles3D = $MuzzleFlash
+@export var weapon_mesh : MeshInstance3D
+@onready var cooldown = %Cooldown
+@onready var muzzle_flash : GPUParticles3D = %MuzzleFlash
 @onready var weapon_position : Vector3 = weapon_mesh.position
+@onready var ray_cast_3d = $RayCast3D
 var camera_pivot
 
 
