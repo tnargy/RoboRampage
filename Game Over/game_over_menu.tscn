@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://l5l147w6ftno"]
 
 [ext_resource type="FontFile" uid="uid://cnrus1i0dbqqj" path="res://assets/fonts/Goldman/Goldman-Bold.ttf" id="1_6p4a0"]
-[ext_resource type="Script" uid="uid://dx6mhxd6ampvj" path="res://Player/game_over_menu.gd" id="2_kxqsi"]
-[ext_resource type="Shader" uid="uid://de3t1oyisti4p" path="res://Player/game_over_menu.tres" id="3_1bqx8"]
+[ext_resource type="Script" uid="uid://dx6mhxd6ampvj" path="res://Game Over/game_over_menu.gd" id="2_kxqsi"]
+[ext_resource type="Shader" uid="uid://de3t1oyisti4p" path="res://Game Over/game_over_menu.tres" id="3_1bqx8"]
 
 [sub_resource type="Theme" id="Theme_kxqsi"]
 default_font = ExtResource("1_6p4a0")

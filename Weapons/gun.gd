@@ -30,7 +30,7 @@ func _process(delta):
 
 
 func shoot():
-	if !ammo_handler.has_ammo(ammo_type):
+	if not ammo_handler.has_ammo(ammo_type):
 		return
 	ammo_handler.use_ammo(ammo_type)
 	muzzle_flash.restart()
