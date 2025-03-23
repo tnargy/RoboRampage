@@ -1,12 +1,56 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv0tl5c1dx1x3"]
+[gd_scene load_steps=10 format=3 uid="uid://dv0tl5c1dx1x3"]
 
 [ext_resource type="Script" uid="uid://76jeudyl4u80" path="res://Pickups/pickup.gd" id="1_v6qaj"]
+[ext_resource type="Shader" uid="uid://41l16mfc2eqy" path="res://Pickups/Aura.tres" id="2_ki6cw"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_i6sg1"]
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i6sg1"]
 radius = 1.0
+
+[sub_resource type="Animation" id="Animation_ki6cw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AmmoMesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.785398, 0, 0.785398)]
+}
+
+[sub_resource type="Animation" id="Animation_v6qaj"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AmmoMesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.785398, 0, 0.785398), Vector3(0.785398, 6.28319, 0.785398)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_py0ns"]
+_data = {
+&"RESET": SubResource("Animation_ki6cw"),
+&"idle": SubResource("Animation_v6qaj")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_py0ns"]
+render_priority = 0
+shader = ExtResource("2_ki6cw")
+
+[sub_resource type="SphereMesh" id="SphereMesh_v6qaj"]
 
 [node name="Pickup" type="Area3D"]
 script = ExtResource("1_v6qaj")
@@ -17,5 +61,15 @@ mesh = SubResource("BoxMesh_i6sg1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_i6sg1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_py0ns")
+}
+autoplay = "idle"
+
+[node name="Aura" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_py0ns")
+mesh = SubResource("SphereMesh_v6qaj")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

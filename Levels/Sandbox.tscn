@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcd4ynv2tdjj"]
+[gd_scene load_steps=11 format=3 uid="uid://bcd4ynv2tdjj"]
 
 [ext_resource type="PackedScene" uid="uid://bsu3gmgu7rb31" path="res://Player/Player.tscn" id="1_pqrdl"]
 [ext_resource type="Material" uid="uid://dm0ky850fgmjp" path="res://Levels/Materials/GreyMaterial.tres" id="1_q2e3v"]
 [ext_resource type="Material" uid="uid://de1dwh0v3luis" path="res://Levels/Materials/OrangeMaterial.tres" id="2_ecytd"]
 [ext_resource type="PackedScene" uid="uid://dewby70ge3jc5" path="res://Enemy/Enemy.tscn" id="4_nwgsj"]
-[ext_resource type="PackedScene" uid="uid://dv0tl5c1dx1x3" path="res://Pickups/Pickup.tscn" id="5_kld8x"]
+[ext_resource type="PackedScene" uid="uid://bq01ff145eamg" path="res://Pickups/Bullet.tscn" id="5_kng65"]
+[ext_resource type="PackedScene" uid="uid://cbobkeh2l2thf" path="res://Pickups/SmBullet.tscn" id="6_m5lms"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dlxqa"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -287,5 +288,10 @@ material = ExtResource("1_q2e3v")
 [node name="Enemy" parent="." instance=ExtResource("4_nwgsj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -16)
 
-[node name="Pickup" parent="." instance=ExtResource("5_kld8x")]
+[node name="Pickups" type="Node3D" parent="."]
+
+[node name="Bullet" parent="Pickups" instance=ExtResource("5_kng65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -6)
+
+[node name="SmBullet" parent="Pickups" instance=ExtResource("6_m5lms")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -6)

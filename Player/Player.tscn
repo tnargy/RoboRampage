@@ -147,6 +147,7 @@ offset_left = -87.0
 offset_top = -72.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
 text = "99"
 label_settings = SubResource("LabelSettings_v0k0e")
 
