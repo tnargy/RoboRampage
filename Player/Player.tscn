@@ -1,14 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://bsu3gmgu7rb31"]
+[gd_scene load_steps=18 format=3 uid="uid://bsu3gmgu7rb31"]
 
 [ext_resource type="Script" uid="uid://ct83tvyif8c5j" path="res://Player/player.gd" id="1_kr7bg"]
 [ext_resource type="Script" uid="uid://dba8wg8u2iunn" path="res://Player/smooth_camera.gd" id="2_oslpa"]
-[ext_resource type="PackedScene" uid="uid://ed67gl6ytyeo" path="res://Weapons/Pistol.tscn" id="3_6ysni"]
+[ext_resource type="PackedScene" uid="uid://bryonixfgc35m" path="res://Weapons/Pistol.tscn" id="3_6ysni"]
 [ext_resource type="Script" uid="uid://c2drvv3oxl6w3" path="res://Weapons/weapon_handler.gd" id="3_s1rgi"]
 [ext_resource type="Texture2D" uid="uid://b1c2lu23ubtb" path="res://assets/crosshairs/crosshair010.png" id="4_ae8mj"]
-[ext_resource type="PackedScene" uid="uid://nfyllb24rj6r" path="res://Weapons/SMG.tscn" id="4_vlldt"]
+[ext_resource type="PackedScene" uid="uid://crlg3xlfav475" path="res://Weapons/SMG.tscn" id="4_vlldt"]
 [ext_resource type="Texture2D" uid="uid://dg4hd1cm3u3j7" path="res://assets/damage.png" id="5_8g4oa"]
 [ext_resource type="PackedScene" uid="uid://l5l147w6ftno" path="res://Game Over/game_over_menu.tscn" id="6_6ysni"]
 [ext_resource type="Script" uid="uid://b5r30p8fut44f" path="res://Weapons/ammo_handler.gd" id="6_j23h2"]
+[ext_resource type="PackedScene" uid="uid://f56ng0gtqgvq" path="res://Weapons/Sniper.tscn" id="6_v0k0e"]
 [ext_resource type="FontFile" uid="uid://vktvsnjlxhqb" path="res://assets/fonts/Goldman/Goldman-Regular.ttf" id="7_0j2ni"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_oe56q"]
@@ -123,12 +124,15 @@ fov = 40.0
 
 [node name="WeaponHandler" type="Node3D" parent="SubViewportContainer/SubViewport/WeaponCamera" node_paths=PackedStringArray("weapons")]
 script = ExtResource("3_s1rgi")
-weapons = [NodePath("SMG"), NodePath("Pistol")]
+weapons = [NodePath("SMG"), NodePath("Pistol"), NodePath("Sniper")]
 
 [node name="SMG" parent="SubViewportContainer/SubViewport/WeaponCamera/WeaponHandler" node_paths=PackedStringArray("ammo_handler") instance=ExtResource("4_vlldt")]
 ammo_handler = NodePath("../../AmmoHandler")
 
 [node name="Pistol" parent="SubViewportContainer/SubViewport/WeaponCamera/WeaponHandler" node_paths=PackedStringArray("ammo_handler") instance=ExtResource("3_6ysni")]
+ammo_handler = NodePath("../../AmmoHandler")
+
+[node name="Sniper" parent="SubViewportContainer/SubViewport/WeaponCamera/WeaponHandler" node_paths=PackedStringArray("ammo_handler") instance=ExtResource("6_v0k0e")]
 ammo_handler = NodePath("../../AmmoHandler")
 
 [node name="AmmoHandler" type="Node" parent="SubViewportContainer/SubViewport/WeaponCamera" node_paths=PackedStringArray("ammo", "weapon_handler")]
@@ -147,7 +151,6 @@ offset_left = -87.0
 offset_top = -72.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 1
 text = "99"
 label_settings = SubResource("LabelSettings_v0k0e")
 

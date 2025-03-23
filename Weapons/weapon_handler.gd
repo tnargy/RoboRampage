@@ -11,11 +11,7 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("weapon_1"):
-		equip(weapons[0])
-	elif event.is_action_pressed("weapon_2"):
-		equip(weapons[1])
-	elif event.is_action_pressed("weapon_cycle_next"):
+	if event.is_action_pressed("weapon_cycle_next"):
 		var next_weapon = wrapi(current_active+1, 0, weapons.size())
 		equip(weapons[next_weapon])
 	elif event.is_action_pressed("weapon_cycle_prev"):
