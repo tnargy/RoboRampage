@@ -3,3 +3,4 @@
 [ext_resource type="PackedScene" uid="uid://nfyllb24rj6r" path="res://Weapons/Weapon.tscn" id="1_hrtej"]
 
 [node name="SMG" instance=ExtResource("1_hrtej")]
+automatic = true

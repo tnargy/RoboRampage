@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnip8uwsp1k26"
-path="res://.godot/imported/crosshair133.png-17b13b1627fbbc3c7806b295f5a8e187.ctex"
+path.s3tc="res://.godot/imported/crosshair133.png-17b13b1627fbbc3c7806b295f5a8e187.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/crosshairs/crosshair133.png"
-dest_files=["res://.godot/imported/crosshair133.png-17b13b1627fbbc3c7806b295f5a8e187.ctex"]
+dest_files=["res://.godot/imported/crosshair133.png-17b13b1627fbbc3c7806b295f5a8e187.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -29,17 +29,23 @@ func _unhandled_input(event):
 
 
 func _aim():
-	smooth_camera.fov *= weapons[current_active].zoom_rate
-	weapon_camera.fov *= weapons[current_active].zoom_rate
-	player.SPEED *= weapons[current_active].zoom_rate
-	weapons[current_active].recoil_x /= 4
+	var gun = weapons[current_active]
+	smooth_camera.fov *= gun.zoom_rate
+	weapon_camera.fov *= gun.zoom_rate
+	player.SPEED *= gun.zoom_rate
+	gun.recoil_x /= 4
+	if gun.sniper:
+		find_child("Scope").visible = true
 
 
 func _zoom_out():
-	smooth_camera.fov /= weapons[current_active].zoom_rate
-	weapon_camera.fov /= weapons[current_active].zoom_rate
-	player.SPEED /= weapons[current_active].zoom_rate
-	weapons[current_active].recoil_x *= 4
+	var gun = weapons[current_active]
+	smooth_camera.fov /= gun.zoom_rate
+	weapon_camera.fov /= gun.zoom_rate
+	player.SPEED /= gun.zoom_rate
+	gun.recoil_x *= 4
+	if gun.sniper:
+		find_child("Scope").visible = false
 
 
 func equip(next_weapon : Gun):

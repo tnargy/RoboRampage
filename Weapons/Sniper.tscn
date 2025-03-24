@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://f56ng0gtqgvq"]
+[gd_scene load_steps=12 format=4 uid="uid://f56ng0gtqgvq"]
 
 [ext_resource type="PackedScene" uid="uid://nfyllb24rj6r" path="res://Weapons/Weapon.tscn" id="1_268sc"]
+[ext_resource type="Texture2D" uid="uid://bnip8uwsp1k26" path="res://assets/crosshairs/crosshair133.png" id="2_f73dl"]
+[ext_resource type="Shader" uid="uid://7pbm5q6j0bbe" path="res://Weapons/Sniper.gdshader" id="3_7j3q1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p81y0"]
 resource_name = "yellow"
@@ -149,13 +151,49 @@ metadata/extras = {
 "targetNames": []
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7j3q1"]
+shader = ExtResource("3_7j3q1")
+shader_parameter/outerRadius = 2.0
+shader_parameter/MainAlpha = 1.0
+shader_parameter/vignette_color = Color(0.362829, 0.362829, 0.362829, 1)
+
 [node name="Sniper" instance=ExtResource("1_268sc")]
-zoom_rate = 0.6
-fire_rate = 1.0
+sniper = true
 weapon_damage = 20
+fire_rate = 1.0
+zoom_rate = 0.6
 
 [node name="blasterP" parent="Gun" index="1"]
 mesh = SubResource("ArrayMesh_0niu2")
 
 [node name="MuzzleFlash" parent="Gun" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, 0.749789)
+
+[node name="Scope" type="TextureRect" parent="." index="2"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+visibility_layer = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(576, 324)
+mouse_filter = 2
+texture = ExtResource("2_f73dl")
+stretch_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="Scope" index="0"]
+material = SubResource("ShaderMaterial_7j3q1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 568.0
+offset_bottom = 318.0
+grow_horizontal = 2
+grow_vertical = 2
