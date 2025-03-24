@@ -1,6 +1,7 @@
 class_name Gun
 extends Node3D
 
+@export var zoom_rate := 0.7
 @export var fire_rate := 14.0
 @export var weapon_damage := 15
 @export var recoil_x := 4

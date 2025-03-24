@@ -4,10 +4,15 @@ extends Node3D
 signal weapon_swapped
 
 @export var weapons : Array[Gun]
-var current_active
+@onready var smooth_camera: Camera3D = %SmoothCamera
+@onready var weapon_camera: Camera3D = %WeaponCamera
+var current_active : int
+var player : Player
+
 
 func _ready():
 	equip(weapons[0])
+	player = get_tree().get_first_node_in_group("player")
 
 
 func _unhandled_input(event):
@@ -17,6 +22,24 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("weapon_cycle_prev"):
 		var next_weapon = wrapi(current_active-1, 0, weapons.size())
 		equip(weapons[next_weapon])
+	elif event.is_action_pressed("aim"):
+		_aim()
+	elif event.is_action_released("aim"):
+		_zoom_out()
+
+
+func _aim():
+	smooth_camera.fov *= weapons[current_active].zoom_rate
+	weapon_camera.fov *= weapons[current_active].zoom_rate
+	player.SPEED *= weapons[current_active].zoom_rate
+	weapons[current_active].recoil_x /= 4
+
+
+func _zoom_out():
+	smooth_camera.fov /= weapons[current_active].zoom_rate
+	weapon_camera.fov /= weapons[current_active].zoom_rate
+	player.SPEED /= weapons[current_active].zoom_rate
+	weapons[current_active].recoil_x *= 4
 
 
 func equip(next_weapon : Gun):

@@ -124,6 +124,7 @@ metadata/extras = {
 }
 
 [node name="Pistol" instance=ExtResource("1_sk4x2")]
+zoom_rate = 0.8
 fire_rate = 1.5
 recoil_x = 0
 ammo_type = 1

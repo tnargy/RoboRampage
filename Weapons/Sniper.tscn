@@ -150,6 +150,7 @@ metadata/extras = {
 }
 
 [node name="Sniper" instance=ExtResource("1_268sc")]
+zoom_rate = 0.6
 fire_rate = 1.0
 weapon_damage = 20
 

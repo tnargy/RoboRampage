@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+var SPEED = 5.0
 const FALL_MULTIPLIER = 2.5
 @export var jump_height: float = 1.0
 @export var max_health := 100
@@ -10,6 +10,7 @@ const FALL_MULTIPLIER = 2.5
 @onready var damage_animation_player = %DamageAnimationPlayer
 @onready var game_over_menu = %GameOverMenu
 @onready var ammo_handler: AmmoHandler = %AmmoHandler
+
 var mouse_motion := Vector2.ZERO
 var hitpoints : int = max_health :
 	set(value):
@@ -57,6 +58,8 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			mouse_motion = -event.relative * 0.001
+			if Input.is_action_pressed("aim"):
+				mouse_motion /= 2
 			
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
