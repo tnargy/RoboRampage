@@ -2,8 +2,9 @@ class_name Player
 extends CharacterBody3D
 
 
-var SPEED = 5.0
 const FALL_MULTIPLIER = 2.5
+
+@export var speed := 8.0
 @export var jump_height: float = 1.0
 @export var max_health := 100
 @onready var camera_pivot = %CameraPivot
@@ -45,11 +46,11 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
 
 	move_and_slide()
 

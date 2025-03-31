@@ -32,7 +32,7 @@ func _aim():
 	var gun = weapons[current_active]
 	smooth_camera.fov *= gun.zoom_rate
 	weapon_camera.fov *= gun.zoom_rate
-	player.SPEED *= gun.zoom_rate
+	player.speed *= gun.zoom_rate
 	gun.recoil_x /= 4
 	if gun.sniper:
 		find_child("Scope").visible = true
@@ -42,7 +42,7 @@ func _zoom_out():
 	var gun = weapons[current_active]
 	smooth_camera.fov /= gun.zoom_rate
 	weapon_camera.fov /= gun.zoom_rate
-	player.SPEED /= gun.zoom_rate
+	player.speed /= gun.zoom_rate
 	gun.recoil_x *= 4
 	if gun.sniper:
 		find_child("Scope").visible = false
